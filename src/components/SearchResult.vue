@@ -1,7 +1,7 @@
-<template v-if="data.length">
+<template>
   <div class="search-result">
     <h2>検索結果</h2>
-    <table class="result-table">
+    <table class="result-table" v-if="data.length">
       <thead>
         <tr>
           <th>User Id</th>
@@ -10,7 +10,11 @@
       </thead>
       <tbody>
         <tr v-for="(item, idx) in data" :key="idx">
-          <td>{{ item.id }}</td>
+          <td>
+            <a href="detail">
+              {{ item.id }}
+            </a>
+            </td>
           <td>{{ item.name }}</td>
         </tr>
       </tbody>
@@ -24,7 +28,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class HelloWorld extends Vue {
   username = "";
-  @Prop() private data!: string;
+  @Prop() private data!: Array<object>;
 }
 </script>
 

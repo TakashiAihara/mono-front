@@ -17,13 +17,9 @@ import SearchResult from "@/components/SearchResult.vue"; // @ is an alias to /s
   },
 })
 export default class Home extends Vue {
-  setData(data: Array<{id: string; name: string}>){
+  setData(data: never[]){
     this.data = data;
   }
-  data = [
-    { id: "001", name: "Tanaka" },
-    { id: "002", name: "Tamura" },
-    { id: "003", name: "Nakata" },
-  ];
+  data = [];
 }
 </script>
