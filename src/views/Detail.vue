@@ -1,14 +1,13 @@
 <template>
+    <v-card width="400px" class="mx-auto mt-10">
   <div class="user-detail">
-      <ul>
-        User Id
-        <li>{{ data.id }}</li>
-      </ul>
-      <ul>
-        User Name
-        <li>{{ data.name }}</li>
-      </ul>
+      <v-card-title>User ID</v-card-title>
+        <v-card-subtitle>{{ data.id }}</v-card-subtitle>
+            <v-divider class="mx-4"></v-divider>
+      <v-card-title>User Name</v-card-title>
+        <v-card-subtitle>{{ data.name }}</v-card-subtitle>
   </div>
+  </v-card>
 </template>
 
 <script lang="ts">

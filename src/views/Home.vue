@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import SearchComponent from "@/components/SearchComponent.vue"; // @ is an alias to /src
-import SearchResult from "@/components/SearchResult.vue"; // @ is an alias to /src
+import SearchComponent from "@/components/SearchComponent.vue";
+import SearchResult from "@/components/SearchResult.vue";
 
 @Component({
   components: {
