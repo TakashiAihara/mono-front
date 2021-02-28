@@ -3,7 +3,7 @@
     <h2>検索条件</h2>
     <h3>User Name</h3>
     <input type="text" v-model="username">
-    <input value="Search" type="button" @click="test">
+    <input value="Search" type="button" @click="onClick">
   </div>
 </template>
 
@@ -14,7 +14,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class HelloWorld extends Vue {
   username = "";
   // @Prop() private username!: string;
-  test(){
+  onClick(){
     alert(this.username);
   }
 }
