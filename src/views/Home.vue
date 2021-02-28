@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SearchComponent></SearchComponent>
+    <SearchComponent :onclick="setData"></SearchComponent>
     <SearchResult :data="data"></SearchResult>
   </div>
 </template>
@@ -17,6 +17,9 @@ import SearchResult from "@/components/SearchResult.vue"; // @ is an alias to /s
   },
 })
 export default class Home extends Vue {
+  setData(data: Array<{id: string; name: string}>){
+    this.data = data;
+  }
   data = [
     { id: "001", name: "Tanaka" },
     { id: "002", name: "Tamura" },

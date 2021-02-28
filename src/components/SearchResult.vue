@@ -25,9 +25,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class HelloWorld extends Vue {
   username = "";
   @Prop() private data!: string;
-  onClick() {
-    alert(this.username);
-  }
 }
 </script>
 
