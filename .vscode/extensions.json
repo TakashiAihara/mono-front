@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "andersonmfjr.vue-extension-pack",
+    "vscodevim.vim",
+    "mubaidr.vuejs-extension-pack",
+    "ritwickdey.liveserver",
+    "dbaeumer.vscode-eslint",
+    "msjsdiag.debugger-for-chrome",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
