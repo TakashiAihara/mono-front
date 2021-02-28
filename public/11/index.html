@@ -1,0 +1,99 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="main.css">
+<title>Vue.js入門</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+  <div id="app">
+    <name-input :on-click="clickHandler"></name-input>
+
+    <table>
+      <thead>
+        <tr>
+          <th v-for="header in tableHeader">{{header}}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr is="table-row":row-data="rowData" :key="idx" v-for="(rowData, idx) in rowDataArray"></tr>
+        <!-- is で 動的レンダー -->
+      </tbody>
+
+    </table>
+
+  </div>
+</body>
+
+<script>
+  // input コンポーネント
+  Vue.component('name-input', {
+    props: {
+      onClick: {
+        type: Function,
+        required: true // required をつけて必須に
+      }
+    },
+    data() {
+      return {
+        inputName: ""
+      }
+    },
+    methods: {
+      addName() {
+        this.onClick(this.inputName)
+      },
+    },
+    template:
+      `<div><input type="text" v-model="inputName">\
+    <input value="追加" type="button" @click="addName"></div>`
+  })
+
+  // 行コンポーネント
+  // v-for での描画を前提とするとバグる
+  Vue.component('table-row', {
+    props: ['rowData'], // {id: "hoge", name: "fuga"}
+    computed: {
+      formattedRowData() { // id を 0埋め
+        return {
+          id: this.rowData.id.toString().padStart(3, '0'),
+          name: this.rowData.name
+        }
+      }
+    },
+    template:
+      `
+        <tr>
+          <td>{{rowData.id}}</td>
+          <td>{{rowData.name}}</td>
+        </tr>
+        `
+  })
+
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        tableHeader: ["ID", "Name"], // ヘッダもデータとして渡す。
+        rowDataArray: [
+          {
+            id: 1, name: "Tanaka",
+          }, {
+            id: 2, name: "Tamura",
+          }, {
+            id: 3, name: "Nakata"
+          }
+        ],
+      };
+    },
+    methods: {
+      clickHandler(inputName) { // 追加するかの判定と、追加の実行
+        if (this.rowDataArray.some(data => data.name === inputName)) return; // 重複はそのまま返す
+        this.rowDataArray.push({
+          id: Math.max.apply(null, this.rowDataArray.map(data => data.id)) + 1, // id は最大+1
+          name: inputName
+        })
+      }
+    }
+  })
+
+</script>

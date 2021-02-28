@@ -1,0 +1,48 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="main.css">
+<title>Vue.js入門</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+  <table id="app">
+
+    <thead>
+      <tr>
+        <th v-for="header in tableHeader">{{header}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr v-for="data in filteredTableData">
+        <td>{{data.id}}</td>
+        <td>{{data.name}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</body>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      tableHeader: ["ID", "Name"], // ヘッダもデータとして渡す。
+      tableData: [
+        {
+          id: "001", name: "Tanaka",
+        }, {
+          id: "002", name: "Tamura",
+        }, {
+          id: "003", name: "Nakata"
+        }
+      ]
+    },
+    computed: { // v-if と v-for の併用を避ける。
+      filteredTableData: function () {
+        return this.tableData.filter(function (data) {
+          return !(data.id === "002")
+        })
+      }
+    }
+  });
+</script>

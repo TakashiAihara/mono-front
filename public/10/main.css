@@ -1,0 +1,8 @@
+#app td,
+#app th {
+  border-bottom: 1px solid;
+}
+
+table#app{
+  border-collapse: collapse;
+}
