@@ -11,9 +11,9 @@
       <tbody>
         <tr v-for="(item, idx) in data" :key="idx">
           <td>
-            <a href="detail">
-              {{ item.id }}
-            </a>
+              <router-link :to="{name: 'users', params: {id: item.id}}">
+                {{ item.id }}
+              </router-link>
             </td>
           <td>{{ item.name }}</td>
         </tr>
