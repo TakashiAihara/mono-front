@@ -18,7 +18,7 @@ import axios from "axios";
 export default class Detail extends Vue {
   created() {
     axios
-      .get(`//localhost:3000/users/${this.$route.params.id}`)
+      .get(`//ubuntu:3000/users/${this.$route.params.id}`)
       .then((resp) => {
         this.data = resp.data;
         console.log(resp)

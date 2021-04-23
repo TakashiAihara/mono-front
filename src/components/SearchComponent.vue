@@ -28,7 +28,7 @@ export default class HelloWorld extends Vue {
   username = "";
   @Prop() private onclick!: Function;
   onClick() {
-    axios.get(`//localhost:3000/users?q=${this.username}`).then((resp) => {
+    axios.get(`//ubuntu:3000/users?q=${this.username}`).then((resp) => {
       this.onclick(resp.data);
     });
   }
