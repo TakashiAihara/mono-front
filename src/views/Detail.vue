@@ -17,12 +17,12 @@
           <v-text-field v-model="data.name" label="User Name"></v-text-field>
         </v-form>
       </v-row>
-      <v-row justify="space-between">
-
-        <v-btn v-if="this.$route.params.id" block @click="registData"
-          >Update</v-btn
-        >
-        <v-btn v-else block @click="registData">Regist</v-btn>
+      <v-row v-if="this.$route.params.id">
+        <v-btn block @click="registData">Update</v-btn>
+        <v-btn dark block @click="deleteData">Delete</v-btn>
+      </v-row>
+      <v-row v-else>
+        <v-btn block @click="registData">Regist</v-btn>
       </v-row>
     </div>
       <p v-if="errors.length">
@@ -49,6 +49,19 @@ export default class Detail extends Vue {
           console.log(resp);
         });
     }
+  }
+
+  deleteData() {
+    axios
+      .delete(`//localhost:3000/person/${this.$route.params.id}`) // URLパラメータからid取得。画面からは取らない。
+      .then((response) => {
+        const e = response.data;
+        console.log(this);
+        this.$router.push({ name: "Home" });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   registData() {
@@ -86,7 +99,10 @@ export default class Detail extends Vue {
         });
     }
   }
-  data = {};
+  data = {
+    id: "",
+    name: "",
+  };
   errors: Array<string> = [];
 }
 </script>
